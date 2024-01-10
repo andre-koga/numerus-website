@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { mathQuotes } from "@/app/lib/utils";
+import { mathQuotes } from "@/app/lib/data";
 import { useEffect, useState } from "react";
 
 export default function Header() {

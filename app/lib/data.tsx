@@ -1,4 +1,5 @@
-import { Quote } from "@/app/lib/types";
+import { ToolOptionDictionary, Quote } from "@/app/lib/types";
+import PrimeFactorization from "@/app/number-theory/tools/prime-factorization";
 
 export const mathQuotes: Quote[] = [
   {
@@ -74,3 +75,38 @@ export const mathQuotes: Quote[] = [
     author: "Richard Feynman",
   },
 ];
+
+export const ntheoryOptions: ToolOptionDictionary = {
+  "prime-factorization": {
+    title: "prime factorization",
+    tool: <PrimeFactorization />,
+  },
+  divisors: {
+    title: "divisors",
+    tool: <PrimeFactorization />,
+  },
+  primality: {
+    title: "primality",
+    tool: <PrimeFactorization />,
+  },
+  "totient-function": {
+    title: "euler's totient function",
+    tool: <PrimeFactorization />,
+  },
+  "modular-inverse": {
+    title: "modular inverses",
+    tool: <PrimeFactorization />,
+  },
+  crt: {
+    title: "chinese remainder theorem",
+    tool: <PrimeFactorization />,
+  },
+  "coprime-check": {
+    title: "coprime check",
+    tool: <PrimeFactorization />,
+  },
+  "primitive-roots": {
+    title: "primitive roots",
+    tool: <PrimeFactorization />,
+  },
+};

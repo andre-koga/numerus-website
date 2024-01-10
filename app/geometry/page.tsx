@@ -1,7 +1,7 @@
 import Field from "@/app/ui/fields/Field";
-import { ModuleOption } from "@/app/lib/types";
+import { ToolOptionDictionary } from "@/app/lib/types";
 
-const options: ModuleOption[] = [];
+const options: ToolOptionDictionary = {};
 
 export default function Page() {
   return <Field title="geometry" options={options}></Field>;

@@ -1,26 +1,27 @@
 import Field from "@/app/ui/fields/Field";
-import PrimeFactorization from "./modules/prime-factorization";
-import { ModuleOptionDictionary } from "@/app/lib/types";
-
-const options: ModuleOptionDictionary = {
-  "prime-factorization": {
-    title: "prime factorization",
-    module: <PrimeFactorization />,
-  },
-};
+import { ntheoryOptions } from "@/app/lib/data";
 
 export default function Page({
   searchParams,
 }: {
-  searchParams?: { module?: string };
+  searchParams?: { tool?: string };
 }) {
-  const module = searchParams?.module || "";
+  const tools: string[] = searchParams?.tool?.split(",") || [];
+  if (tools.length === 0 || tools[0] === "") {
+    return (
+      <Field title="number theory" options={ntheoryOptions}>
+        <p className="my-4 text-center uppercase text-mid">
+          (select one of the functions to continue)
+        </p>
+      </Field>
+    );
+  }
 
   return (
     <Field
       title="number theory"
-      options={options}
-      currentModule={module}
+      options={ntheoryOptions}
+      currentTools={tools}
     ></Field>
   );
 }

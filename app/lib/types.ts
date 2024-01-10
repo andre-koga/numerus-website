@@ -3,11 +3,11 @@ export type Quote = {
   author: string;
 };
 
-export type ModuleOptionDictionary = { [key: string]: ModuleOption };
+export type ToolOptionDictionary = { [key: string]: ToolOption };
 
-export type ModuleOption = {
+export type ToolOption = {
   title: string;
-  module: React.ReactNode;
+  tool: React.ReactNode;
 };
 
-export type ModuleNode = () => React.ReactNode;
+export type ToolNode = () => React.ReactNode;
