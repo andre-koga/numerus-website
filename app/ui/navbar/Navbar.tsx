@@ -30,10 +30,10 @@ export default function Navbar() {
   return (
     <nav>
       <ul className="m-2 grid grid-cols-4 gap-2 sm:grid-cols-1 sm:gap-3">
-        <li className="-mx-0.5 my-1 hidden rounded-full sm:block">
+        <li className="mt-1 hidden rounded-full sm:block">
           <Link href="/">
-            <div className="rounded bg-primary py-1 font-bold uppercase italic text-dark transition-colors hover:bg-yellow-200 active:bg-light">
-              <p className="whitespace-nowrap text-center text-lg md:text-lg">
+            <div className="rounded uppercase italic text-primary transition-colors hover:bg-primary hover:text-dark active:bg-light">
+              <p className="whitespace-nowrap text-center text-lg sm:text-xl">
                 numerus
               </p>
             </div>

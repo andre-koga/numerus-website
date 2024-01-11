@@ -50,35 +50,31 @@ const PrimeFactorization: ToolNode = (values) => {
   }, [factors]);
 
   return (
-    <>
-      <div>
-        {isCalculating && (
-          <p className="text-center italic text-lighty">
-            {Object.entries(factors)
-              .map((factor) => factor[0] + "^" + factor[1] + "")
-              .join(" * ")}
-            ...
-          </p>
-        )}
-        {!isCalculating && (
-          <p>
-            $$
-            {Object.entries(factors)
-              .map(
-                (factor) =>
-                  factor[0] + (factor[1] > 1 ? "^{" + factor[1] + "}" : ""),
-              )
-              .join("\\cdot")}
-            $$
-          </p>
-        )}
-      </div>
-      <Script
-        id="MathJax-script"
-        async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-      />
-    </>
+    <div className="rounded-full border border-mid">
+      {isCalculating && (
+        <p className="my-4 text-center italic text-lighty">
+          {Object.entries(factors)
+            .map((factor) => factor[0] + "^" + factor[1] + "")
+            .join(" * ")}
+          ...
+        </p>
+      )}
+      {!isCalculating && (
+        <p>
+          $$
+          {Object.entries(factors)
+            .map(
+              (factor) =>
+                factor[0] + (factor[1] > 1 ? "^{" + factor[1] + "}" : ""),
+            )
+            .join("\\cdot")}
+          $$
+        </p>
+      )}
+      <p className="my-4 text-center text-sm">
+        {Object.entries(factors).length} distinct prime factors
+      </p>
+    </div>
   );
 };
 

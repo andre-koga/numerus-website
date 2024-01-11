@@ -79,7 +79,7 @@ export const mathQuotes: Quote[] = [
 export const ntheoryOptions: ToolOptionDictionary = {
   "prime-factorization": {
     title: "prime factorization",
-    info: "hey",
+    info: "integers only",
     tool: PrimeFactorization,
     shortName: "pf",
     inputTypes: [
