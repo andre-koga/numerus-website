@@ -4,6 +4,7 @@ import moment from "moment";
 import ToolForm from "./ToolForm";
 import { ToolFormData, ToolNode } from "@/app/lib/types";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function ToolWrapper({
   title,
@@ -16,9 +17,17 @@ export default function ToolWrapper({
   formData: ToolFormData;
   toolNode: ToolNode;
 }) {
-  const [values, setValues] = useState<number[]>(
-    Array(formData.inputTypes.length).fill(0),
-  );
+  const searchParams = useSearchParams();
+  let startValues =
+    searchParams
+      .get(formData.shortName)
+      ?.split(",")
+      .map((text) => Number(text)) || [];
+
+  if (startValues.length !== formData.inputTypes.length)
+    startValues = Array(formData.inputTypes.length).fill(0);
+
+  const [values, setValues] = useState<number[]>(startValues);
 
   return (
     <section className="rounded border border-mid bg-darky p-3">
