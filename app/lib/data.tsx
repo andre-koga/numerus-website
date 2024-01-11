@@ -1,5 +1,6 @@
 import { ToolOptionDictionary, Quote } from "@/app/lib/types";
 import PrimeFactorization from "@/app/number-theory/tools/PrimeFactorization";
+import PrimeFinder from "@/app/number-theory/tools/PrimeFinder";
 
 export const mathQuotes: Quote[] = [
   {
@@ -80,6 +81,7 @@ export const ntheoryOptions: ToolOptionDictionary = {
   "prime-factorization": {
     title: "prime factorization",
     info: "integers only",
+    date: "20240111",
     tool: PrimeFactorization,
     shortName: "pf",
     inputTypes: [
@@ -89,32 +91,17 @@ export const ntheoryOptions: ToolOptionDictionary = {
       },
     ],
   },
-  // divisors: {
-  //   title: "divisors",
-  //   tool: <PrimeFactorization />,
-  // },
-  // primality: {
-  //   title: "primality",
-  //   tool: <PrimeFactorization />,
-  // },
-  // "totient-function": {
-  //   title: "euler's totient function",
-  //   tool: <PrimeFactorization />,
-  // },
-  // "modular-inverse": {
-  //   title: "modular inverses",
-  //   tool: <PrimeFactorization />,
-  // },
-  // crt: {
-  //   title: "chinese remainder theorem",
-  //   tool: <PrimeFactorization />,
-  // },
-  // "coprime-check": {
-  //   title: "coprime check",
-  //   tool: <PrimeFactorization />,
-  // },
-  // "primitive-roots": {
-  //   title: "primitive roots",
-  //   tool: <PrimeFactorization />,
-  // },
+  "prime-finder": {
+    title: "prime finder",
+    info: "finds the smallest prime bigger than n - very slow for big numbers!",
+    date: "20240111",
+    tool: PrimeFinder,
+    shortName: "pfn",
+    inputTypes: [
+      {
+        type: "number",
+        tooltip: "Bottom threshold",
+      },
+    ],
+  },
 };

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
-import Script from "next/script";
 import { ToolNode } from "@/app/lib/types";
 
 declare global {
@@ -72,7 +71,8 @@ const PrimeFactorization: ToolNode = (values) => {
         </p>
       )}
       <p className="my-4 text-center text-sm">
-        {Object.entries(factors).length} distinct prime factors
+        {factors[0] || factors[1] ? "no" : Object.entries(factors).length}{" "}
+        distinct prime factor{Object.entries(factors).length != 1 ? "s" : ""}
       </p>
     </div>
   );

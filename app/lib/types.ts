@@ -11,6 +11,7 @@ export type ToolOptionDictionary = { [key: string]: ToolOption };
 export type ToolOption = {
   title: string;
   info: string;
+  date: string;
   tool: ToolNode;
   shortName: string;
   inputTypes: Array<FormNumberInput | FormDropdownInput>;

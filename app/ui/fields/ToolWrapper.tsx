@@ -38,12 +38,12 @@ export default function ToolWrapper({
         <div className="items-center justify-between sm:flex">
           <h2 className="text-lg uppercase">{title}</h2>
           {updatedAt && (
-            <p className="hidden text-xs lowercase italic text-lighty sm:mb-1 sm:block">
+            <p className="hidden text-xs lowercase italic text-mid sm:mb-1 sm:block">
               updated {moment(updatedAt, "YYYYMMDD").fromNow()}
             </p>
           )}
         </div>
-        <p className="text-left text-sm italic text-lighty">{info}</p>
+        <p className="text-justify text-sm italic text-lighty">{info}</p>
         <div className="mt-4">{toolNode(values)}</div>
         <ToolForm
           shortName={formData.shortName}

@@ -90,7 +90,7 @@ export default function Field({
               <ToolWrapper
                 title={options[currentTool].title}
                 info={options[currentTool].info}
-                updatedAt="20240110"
+                updatedAt={options[currentTool].date}
                 formData={{
                   shortName: options[currentTool].shortName,
                   inputTypes: options[currentTool].inputTypes,
