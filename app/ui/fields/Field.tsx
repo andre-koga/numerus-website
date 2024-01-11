@@ -61,6 +61,7 @@ export default function Field({
           </li>
           {Object.entries(options).map(([slug, option], i) => (
             <li
+              key={i}
               className={clsx(
                 "rounded-full transition-colors",
                 {

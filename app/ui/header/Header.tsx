@@ -24,7 +24,7 @@ export default function Header() {
       </p>
       <div className="mb-4 rounded bg-darky p-3 text-center">
         <p className="my-1 text-sm italic text-lighty md:text-base">
-          "{mathQuotes[quoteID].quote}"
+          &quot;{mathQuotes[quoteID].quote}&quot;
         </p>
         <p className="my-1 text-xs italic text-lighty md:text-sm">
           {mathQuotes[quoteID].author}
