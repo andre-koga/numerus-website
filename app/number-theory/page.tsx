@@ -22,6 +22,6 @@ export default function Page({
       title="number theory"
       options={ntheoryOptions}
       currentTools={tools}
-    ></Field>
+    />
   );
 }

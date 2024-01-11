@@ -1,5 +1,5 @@
 import { ToolOptionDictionary, Quote } from "@/app/lib/types";
-import PrimeFactorization from "@/app/number-theory/tools/prime-factorization";
+import PrimeFactorization from "@/app/number-theory/tools/PrimeFactorization";
 
 export const mathQuotes: Quote[] = [
   {
@@ -79,34 +79,41 @@ export const mathQuotes: Quote[] = [
 export const ntheoryOptions: ToolOptionDictionary = {
   "prime-factorization": {
     title: "prime factorization",
-    tool: <PrimeFactorization />,
+    tool: PrimeFactorization,
+    shortName: "pf",
+    inputTypes: [
+      {
+        type: "number",
+        tooltip: "Number to factorize",
+      },
+    ],
   },
-  divisors: {
-    title: "divisors",
-    tool: <PrimeFactorization />,
-  },
-  primality: {
-    title: "primality",
-    tool: <PrimeFactorization />,
-  },
-  "totient-function": {
-    title: "euler's totient function",
-    tool: <PrimeFactorization />,
-  },
-  "modular-inverse": {
-    title: "modular inverses",
-    tool: <PrimeFactorization />,
-  },
-  crt: {
-    title: "chinese remainder theorem",
-    tool: <PrimeFactorization />,
-  },
-  "coprime-check": {
-    title: "coprime check",
-    tool: <PrimeFactorization />,
-  },
-  "primitive-roots": {
-    title: "primitive roots",
-    tool: <PrimeFactorization />,
-  },
+  // divisors: {
+  //   title: "divisors",
+  //   tool: <PrimeFactorization />,
+  // },
+  // primality: {
+  //   title: "primality",
+  //   tool: <PrimeFactorization />,
+  // },
+  // "totient-function": {
+  //   title: "euler's totient function",
+  //   tool: <PrimeFactorization />,
+  // },
+  // "modular-inverse": {
+  //   title: "modular inverses",
+  //   tool: <PrimeFactorization />,
+  // },
+  // crt: {
+  //   title: "chinese remainder theorem",
+  //   tool: <PrimeFactorization />,
+  // },
+  // "coprime-check": {
+  //   title: "coprime check",
+  //   tool: <PrimeFactorization />,
+  // },
+  // "primitive-roots": {
+  //   title: "primitive roots",
+  //   tool: <PrimeFactorization />,
+  // },
 };

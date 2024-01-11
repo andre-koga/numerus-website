@@ -1,9 +1,11 @@
 "use client";
 
-import { ToolOptionDictionary } from "@/app/lib/types";
+import { ToolOptionDictionary, ValueStates } from "@/app/lib/types";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import ToolError from "./ToolError";
 import clsx from "clsx";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import ToolWrapper from "./ToolWrapper";
 
 export default function Field({
   children,
@@ -46,8 +48,8 @@ export default function Field({
     <main className="m-4">
       <h1 className="mb-3 text-4xl font-bold uppercase">{title}</h1>
       <nav>
-        <ul className="mb-4 flex flex-wrap gap-2 text-sm">
-          <li className="rounded-full bg-primary font-bold text-dark">
+        <ul className="mb-4 flex flex-wrap gap-2 text-xs sm:text-sm">
+          <li className="rounded-full bg-primary font-bold text-dark transition-colors hover:bg-yellow-200 active:bg-light">
             <button
               className="px-2 py-1"
               onClick={() => {
@@ -83,10 +85,22 @@ export default function Field({
           ))}
         </ul>
       </nav>
-      <ul className="grid gap-3 sm:grid-cols-2">
+      <ul className="grid gap-3 md:grid-cols-1 lg:grid-cols-2">
         {currentTools?.map((currentTool, i) => (
           <li key={i}>
-            {currentTool in options ? options[currentTool].tool : <ToolError />}
+            {currentTool in options ? (
+              <ToolWrapper
+                title={options[currentTool].title}
+                updatedAt="20240110"
+                formData={{
+                  shortName: options[currentTool].shortName,
+                  inputTypes: options[currentTool].inputTypes,
+                }}
+                toolNode={options[currentTool].tool}
+              />
+            ) : (
+              <ToolError />
+            )}
           </li>
         ))}
       </ul>
