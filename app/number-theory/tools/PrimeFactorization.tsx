@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Script from "next/script";
 import { ToolNode } from "@/app/lib/types";
 
@@ -11,21 +11,37 @@ declare global {
 }
 
 const PrimeFactorization: ToolNode = (values) => {
-  const [factors, setFactors] = useState<{ [key: number]: number }>({});
   const [isCalculating, setIsCalculating] = useState(false);
+  const [factors, setFactors] = useState<{ [key: string]: number }>({});
+
+  const addNewFactor = useCallback((n: string) => {
+    setFactors((prevFactors) => {
+      const newFactors = { ...prevFactors };
+      if (newFactors[n]) newFactors[n]++;
+      else newFactors[n] = 1;
+      return newFactors;
+    });
+  }, []);
 
   useEffect(() => {
     const worker = new Worker("./primeFactorizationWorker.js");
+
+    worker.onmessage = (event) => {
+      if (event.data === -1) {
+        setIsCalculating(false);
+      } else {
+        addNewFactor(event.data.toString());
+      }
+    };
+
+    setFactors({});
     worker.postMessage(values[0]);
     setIsCalculating(true);
-    worker.onmessage = (event) => {
-      setIsCalculating(false);
-      setFactors(event.data);
-    };
+
     return () => {
       worker.terminate();
     };
-  }, [values]);
+  }, [values, addNewFactor]);
 
   useEffect(() => {
     if (window.MathJax) {
@@ -37,15 +53,21 @@ const PrimeFactorization: ToolNode = (values) => {
     <>
       <div>
         {isCalculating && (
-          <p className="text-center text-sm lowercase italic text-lighty">
-            Calculating...
+          <p className="text-center italic text-lighty">
+            {Object.entries(factors)
+              .map((factor) => factor[0] + "^" + factor[1] + "")
+              .join(" * ")}
+            ...
           </p>
         )}
         {!isCalculating && (
           <p>
-            $$N=
+            $$
             {Object.entries(factors)
-              .map((factor) => factor[0] + "^{" + factor[1] + "}")
+              .map(
+                (factor) =>
+                  factor[0] + (factor[1] > 1 ? "^{" + factor[1] + "}" : ""),
+              )
               .join("\\cdot")}
             $$
           </p>

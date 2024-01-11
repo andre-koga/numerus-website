@@ -1,10 +1,9 @@
 "use client";
 
-import { ToolOptionDictionary, ValueStates } from "@/app/lib/types";
+import { ToolOptionDictionary } from "@/app/lib/types";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import ToolError from "./ToolError";
 import clsx from "clsx";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import ToolWrapper from "./ToolWrapper";
 
 export default function Field({
@@ -39,13 +38,11 @@ export default function Field({
   };
 
   const clearTools = () => {
-    const params = new URLSearchParams(searchParams);
-    params.delete("tool");
-    replace(`${pathname}?${params.toString()}`);
+    replace(`${pathname}`);
   };
 
   return (
-    <main className="m-4">
+    <main className="m-3 sm:m-4">
       <h1 className="mb-3 text-4xl font-bold uppercase">{title}</h1>
       <nav>
         <ul className="mb-4 flex flex-wrap gap-2 text-xs sm:text-sm">
@@ -92,6 +89,7 @@ export default function Field({
             {currentTool in options ? (
               <ToolWrapper
                 title={options[currentTool].title}
+                info={options[currentTool].info}
                 updatedAt="20240110"
                 formData={{
                   shortName: options[currentTool].shortName,

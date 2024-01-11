@@ -13,10 +13,10 @@ export default function ToolForm({
 }: {
   shortName: string;
   inputTypes: Array<FormNumberInput | FormDropdownInput>;
-  inputs: number[];
-  setInputs: Dispatch<SetStateAction<number[]>>;
+  inputs: BigInt[];
+  setInputs: Dispatch<SetStateAction<BigInt[]>>;
 }) {
-  const [localInputs, setLocalInputs] = useState<number[]>(inputs);
+  const [localInputs, setLocalInputs] = useState<BigInt[]>(inputs);
   const [hasChanged, setHasChanged] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -38,13 +38,10 @@ export default function ToolForm({
     setTimeout(() => setIsSubmitting(false), 100);
   };
 
-  const setInput = (index: number, value: number) => {
+  const setInput = (index: number, value: BigInt) => {
     setHasChanged(true);
     const newInputs = [...inputs];
-    newInputs[index] = Math.max(
-      Math.min(value, Number.MAX_SAFE_INTEGER),
-      Number.MIN_SAFE_INTEGER,
-    );
+    newInputs[index] = value;
     setLocalInputs(newInputs);
   };
 
@@ -68,9 +65,10 @@ export default function ToolForm({
           case "number":
             return (
               <input
+                key={i}
                 type="number"
                 value={localInputs[i].toString()}
-                onChange={(e) => setInput(i, Number(e.target.value))}
+                onChange={(e) => setInput(i, BigInt(e.target.value))}
                 className="flex-grow rounded bg-mid text-center uppercase text-light placeholder:italic placeholder:text-lighty focus:outline focus:outline-1 focus:outline-primary"
                 placeholder="Input a number"
                 title={inputType.tooltip}
@@ -78,8 +76,9 @@ export default function ToolForm({
             );
           case "dropdown":
             <select
-              value={inputType.options[localInputs[i]]}
-              onChange={(e) => setInput(i, Number(e.target.value))}
+              key={i}
+              value="dropdown test"
+              onChange={(e) => setInput(i, BigInt(e.target.value))}
               className="flex-grow rounded bg-mid text-center uppercase text-light placeholder:italic placeholder:text-lighty focus:outline focus:outline-1 focus:outline-primary"
             >
               {inputType.options.map((option, j) => (

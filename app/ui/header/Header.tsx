@@ -11,7 +11,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="m-4">
+    <header className="m-3 sm:m-4">
       <p className="my-3 text-center text-xs italic text-mid">
         have any other cool quotes that you want to see here?{" "}
         <a

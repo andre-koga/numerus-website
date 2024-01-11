@@ -10,12 +10,13 @@ export type ToolOptionDictionary = { [key: string]: ToolOption };
 
 export type ToolOption = {
   title: string;
+  info: string;
   tool: ToolNode;
   shortName: string;
   inputTypes: Array<FormNumberInput | FormDropdownInput>;
 };
 
-export type ToolNode = (values: number[]) => React.ReactNode;
+export type ToolNode = (values: BigInt[]) => React.ReactNode;
 
 export type FormNumberInput = {
   type: "number";
