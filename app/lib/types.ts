@@ -6,8 +6,6 @@ export type Quote = {
   author: string;
 };
 
-export type ToolOptionDictionary = { [key: string]: ToolOption };
-
 export type ToolOption = {
   title: string;
   info: string;

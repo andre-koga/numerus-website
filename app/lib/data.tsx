@@ -1,4 +1,4 @@
-import { ToolOptionDictionary, Quote } from "@/app/lib/types";
+import { Quote, ToolOption } from "@/app/lib/types";
 import PrimeFactorization from "@/app/number-theory/tools/PrimeFactorization";
 import PrimeFinder from "@/app/number-theory/tools/PrimeFinder";
 
@@ -77,8 +77,8 @@ export const mathQuotes: Quote[] = [
   },
 ];
 
-export const ntheoryOptions: ToolOptionDictionary = {
-  "prime-factorization": {
+export const ntheoryOptions: ToolOption[] = [
+  {
     title: "prime factorization",
     info: "integers only",
     date: "20240111",
@@ -91,7 +91,7 @@ export const ntheoryOptions: ToolOptionDictionary = {
       },
     ],
   },
-  "prime-finder": {
+  {
     title: "prime finder",
     info: "finds the smallest prime bigger than n - very slow for big numbers!",
     date: "20240111",
@@ -104,4 +104,4 @@ export const ntheoryOptions: ToolOptionDictionary = {
       },
     ],
   },
-};
+];

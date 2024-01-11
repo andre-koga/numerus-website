@@ -10,6 +10,14 @@ declare global {
 }
 
 const PrimeFinder: ToolNode = (values) => {
+  if (values === undefined) {
+    return (
+      <div className="rounded-full border border-mid">
+        <p>something went wrong!</p>
+      </div>
+    );
+  }
+
   const [isCalculating, setIsCalculating] = useState(false);
   const [prime, setPrime] = useState<BigInt>(BigInt(0));
 

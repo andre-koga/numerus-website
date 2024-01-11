@@ -6,8 +6,8 @@ export default function Page({
 }: {
   searchParams?: { tool?: string };
 }) {
-  const tools: string[] = searchParams?.tool?.split(",") || [];
-  if (tools.length === 0 || tools[0] === "") {
+  const tools: string = searchParams?.tool || "";
+  if (tools.length === 0) {
     return (
       <Field title="number theory" options={ntheoryOptions}>
         <p className="my-4 text-center uppercase text-mid">

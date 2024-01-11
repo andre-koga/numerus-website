@@ -10,6 +10,14 @@ declare global {
 }
 
 const PrimeFactorization: ToolNode = (values) => {
+  if (values === undefined) {
+    return (
+      <div className="rounded-full border border-mid">
+        <p>something went wrong!</p>
+      </div>
+    );
+  }
+
   const [isCalculating, setIsCalculating] = useState(false);
   const [factors, setFactors] = useState<{ [key: string]: number }>({});
 

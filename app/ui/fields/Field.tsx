@@ -1,6 +1,6 @@
 "use client";
 
-import { ToolOptionDictionary } from "@/app/lib/types";
+import { ToolOption } from "@/app/lib/types";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import ToolError from "./ToolError";
 import clsx from "clsx";
@@ -14,23 +14,37 @@ export default function Field({
 }: {
   children?: React.ReactNode;
   title: string;
-  options: ToolOptionDictionary;
-  currentTools?: string[];
+  options: ToolOption[];
+  currentTools?: string;
 }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const toggleTool = (slug: string) => {
+  const toggleTool = (index: number) => {
     const params = new URLSearchParams(searchParams);
-    if (currentTools?.includes(slug)) {
-      const newTools = currentTools.filter((tool) => tool !== slug).join(",");
+    if (currentTools?.charAt(index) === "1") {
+      const newTools =
+        currentTools.substring(0, index) +
+        "0" +
+        currentTools.substring(index + 1);
 
-      newTools.length > 0
-        ? params.set("tool", newTools)
-        : params.delete("tool");
+      params.set("tool", newTools);
+    } else if (currentTools) {
+      const newTools =
+        currentTools.substring(0, index) +
+        "1" +
+        currentTools.substring(index + 1);
+
+      params.set("tool", newTools);
     } else {
-      const newTools = [...(currentTools || []), slug].join(",");
+      const newTools =
+        Array(index).fill("0").join() +
+        "1" +
+        Array(options.length - index - 1)
+          .fill("0")
+          .join();
+
       params.set("tool", newTools);
     }
 
@@ -56,17 +70,18 @@ export default function Field({
               <p className="lowercase">reset</p>
             </button>
           </li>
-          {Object.entries(options).map(([slug, option], i) => (
+          {options.map((option, i) => (
             <li
               key={i}
               className={clsx(
                 "rounded-full transition-colors",
                 {
-                  "bg-light font-bold text-dark": currentTools?.includes(slug),
+                  "bg-light font-bold text-dark":
+                    currentTools?.charAt(i) === "1",
                 },
                 {
                   "bg-mid hover:bg-lighty hover:text-dark":
-                    !currentTools?.includes(slug),
+                    currentTools?.charAt(i) !== "1",
                 },
               )}
             >
@@ -74,7 +89,7 @@ export default function Field({
                 className="px-2 py-1"
                 key={i}
                 onClick={() => {
-                  toggleTool(slug);
+                  toggleTool(i);
                 }}
               >
                 <p className="lowercase">{option.title}</p>
@@ -84,24 +99,23 @@ export default function Field({
         </ul>
       </nav>
       <ul className="grid gap-3 md:grid-cols-1 lg:grid-cols-2">
-        {currentTools?.map((currentTool, i) => (
-          <li key={i}>
-            {currentTool in options ? (
-              <ToolWrapper
-                title={options[currentTool].title}
-                info={options[currentTool].info}
-                updatedAt={options[currentTool].date}
-                formData={{
-                  shortName: options[currentTool].shortName,
-                  inputTypes: options[currentTool].inputTypes,
-                }}
-                toolNode={options[currentTool].tool}
-              />
-            ) : (
-              <ToolError />
-            )}
-          </li>
-        ))}
+        {currentTools?.split("").map(
+          (currentTool, i) =>
+            currentTool === "1" && (
+              <li key={i}>
+                <ToolWrapper
+                  title={options[i].title}
+                  info={options[i].info}
+                  updatedAt={options[i].date}
+                  formData={{
+                    shortName: options[i].shortName,
+                    inputTypes: options[i].inputTypes,
+                  }}
+                  toolNode={options[i].tool}
+                />
+              </li>
+            ),
+        )}
       </ul>
       {children}
     </main>
