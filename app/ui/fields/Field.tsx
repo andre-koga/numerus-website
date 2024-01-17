@@ -2,9 +2,9 @@
 
 import { ToolOption } from "@/app/lib/types";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import ToolError from "./ToolError";
 import clsx from "clsx";
 import ToolWrapper from "./ToolWrapper";
+import Link from "next/link";
 
 export default function Field({
   children,

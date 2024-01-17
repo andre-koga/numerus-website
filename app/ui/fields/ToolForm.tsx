@@ -3,6 +3,7 @@
 import { FormDropdownInput, FormNumberInput } from "@/app/lib/types";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Dispatch, SetStateAction, useState } from "react";
+import { TbArrowRight } from "react-icons/tb";
 import clsx from "clsx";
 
 export default function ToolForm({
@@ -47,19 +48,6 @@ export default function ToolForm({
 
   return (
     <form className="mt-4 flex gap-3 text-lg" onSubmit={handleSubmit}>
-      <button
-        className={clsx(
-          "pointer-events-none rounded-full bg-mid px-3 uppercase transition-colors",
-          {
-            "pointer-events-auto bg-primary text-dark": hasChanged,
-          },
-          { "bg-white text-dark": isSubmitting },
-          { "text-lighty": !hasChanged && !isSubmitting },
-        )}
-        type="submit"
-      >
-        Enter
-      </button>
       {inputTypes.map((inputType, i) => {
         switch (inputType.type) {
           case "number":
@@ -91,6 +79,19 @@ export default function ToolForm({
             );
         }
       })}
+      <button
+        className={clsx(
+          "pointer-events-none flex items-center justify-center rounded-full bg-mid px-4 uppercase transition-colors",
+          {
+            "pointer-events-auto bg-primary text-dark": hasChanged,
+          },
+          { "bg-white text-dark": isSubmitting },
+          { "text-lighty": !hasChanged && !isSubmitting },
+        )}
+        type="submit"
+      >
+        <TbArrowRight />
+      </button>
     </form>
   );
 }
