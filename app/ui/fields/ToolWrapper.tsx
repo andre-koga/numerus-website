@@ -21,14 +21,13 @@ export default function ToolWrapper({
   toolNode: ToolNode;
 }) {
   const searchParams = useSearchParams();
-  let startValues =
-    searchParams
-      .get(formData.shortName)
-      ?.split(",")
-      .map((text) => BigInt(text)) || [];
 
-  if (startValues.length !== formData.inputTypes.length)
-    startValues = Array(formData.inputTypes.length).fill(0);
+  const startValues = Array(formData.inputTypes.length).fill(0);
+
+  searchParams
+    .get(formData.shortName)
+    ?.split(",")
+    .map((text, i) => (startValues[i] = BigInt(text)));
 
   const [values, setValues] = useState<BigInt[]>(startValues);
 

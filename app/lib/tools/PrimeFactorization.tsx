@@ -67,21 +67,28 @@ const PrimeFactorization: ToolNode = (values) => {
         </p>
       )}
       {!isCalculating && (
-        <p>
-          $$
-          {Object.entries(factors)
-            .map(
-              (factor) =>
-                factor[0] + (factor[1] > 1 ? "^{" + factor[1] + "}" : ""),
-            )
-            .join("\\cdot")}
-          $$
-        </p>
+        <>
+          <p>
+            $$
+            {Object.entries(factors)
+              .map(
+                (factor) =>
+                  factor[0] + (factor[1] > 1 ? "^{" + factor[1] + "}" : ""),
+              )
+              .join("\\cdot")}
+            $$
+          </p>
+          <p className="my-4 text-center text-sm">
+            $${"\\text{"}
+            {factors[0] || factors[1]
+              ? "no"
+              : Object.entries(factors).length}{" "}
+            distinct prime factor
+            {Object.entries(factors).length != 1 ? "s" : ""}
+            {"}"}$$
+          </p>
+        </>
       )}
-      <p className="my-4 text-center text-sm">
-        {factors[0] || factors[1] ? "no" : Object.entries(factors).length}{" "}
-        distinct prime factor{Object.entries(factors).length != 1 ? "s" : ""}
-      </p>
     </div>
   );
 };

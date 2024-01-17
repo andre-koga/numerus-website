@@ -1,18 +1,19 @@
 self.onmessage = (event) => {
-  let n = BigInt(event.data);
-  n++;
+  let n = BigInt(event.data[0]);
+  let m = BigInt(event.data[1]);
 
-  while (!primeChecker(n)) {
+  while (n <= m) {
+    if (primeChecker(n)) self.postMessage(n);
     n += BigInt(1);
   }
 
-  self.postMessage(n);
+  self.postMessage(-1);
 };
 
 function primeChecker(n) {
   if (n < BigInt(0)) n = -n;
 
-  if (n === BigInt(1)) return false;
+  if (n <= BigInt(1)) return false;
   if (n === BigInt(2)) return true;
 
   // Check for divisibility by 2

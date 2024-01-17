@@ -38,18 +38,18 @@ export default function ToolForm({
     setTimeout(() => setIsSubmitting(false), 100);
   };
 
-  const setInput = (index: number, value: BigInt) => {
+  const setInput = (index: number, value: string) => {
     setHasChanged(true);
-    const newInputs = [...inputs];
-    newInputs[index] = value;
+    const newInputs = [...localInputs];
+    newInputs[index] = BigInt(value);
     setLocalInputs(newInputs);
   };
 
   return (
-    <form className="mt-4 flex text-lg" onSubmit={handleSubmit}>
+    <form className="mt-4 flex gap-3 text-lg" onSubmit={handleSubmit}>
       <button
         className={clsx(
-          "pointer-events-none mr-3 rounded-full bg-mid px-3 uppercase transition-colors",
+          "pointer-events-none rounded-full bg-mid px-3 uppercase transition-colors",
           {
             "pointer-events-auto bg-primary text-dark": hasChanged,
           },
@@ -68,25 +68,27 @@ export default function ToolForm({
                 key={i}
                 type="number"
                 value={localInputs[i].toString()}
-                onChange={(e) => setInput(i, BigInt(e.target.value))}
+                onChange={(e) => setInput(i, e.target.value)}
                 className="flex-grow rounded bg-mid text-center uppercase text-light placeholder:italic placeholder:text-lighty focus:outline focus:outline-1 focus:outline-primary"
                 placeholder="Input a number"
                 title={inputType.tooltip}
               />
             );
           case "dropdown":
-            <select
-              key={i}
-              value="dropdown test"
-              onChange={(e) => setInput(i, BigInt(e.target.value))}
-              className="flex-grow rounded bg-mid text-center uppercase text-light placeholder:italic placeholder:text-lighty focus:outline focus:outline-1 focus:outline-primary"
-            >
-              {inputType.options.map((option, j) => (
-                <option key={j} value={j}>
-                  {option}
-                </option>
-              ))}
-            </select>;
+            return (
+              <select
+                key={i}
+                value="dropdown test"
+                onChange={(e) => setInput(i, e.target.value)}
+                className="flex-grow rounded bg-mid text-center uppercase text-light placeholder:italic placeholder:text-lighty focus:outline focus:outline-1 focus:outline-primary"
+              >
+                {inputType.options.map((option, j) => (
+                  <option key={j} value={j}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            );
         }
       })}
     </form>

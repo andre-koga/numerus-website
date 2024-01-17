@@ -9,7 +9,7 @@ export default function Home() {
           No ads, no payments, no shady links. Just pure, beautiful math
         </h2>
         <p className="my-4 text-center uppercase text-mid">
-          (select one of the math fields to start)
+          (want specific tools? check the math fields)
         </p>
       </div>
     </main>

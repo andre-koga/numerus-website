@@ -1,6 +1,6 @@
 import { Quote, ToolOption } from "@/app/lib/types";
-import PrimeFactorization from "@/app/number-theory/tools/PrimeFactorization";
-import PrimeFinder from "@/app/number-theory/tools/PrimeFinder";
+import PrimeFactorization from "@/app/lib/tools/PrimeFactorization";
+import PrimeFinder from "@/app/lib/tools/PrimeFinder";
 
 export const mathQuotes: Quote[] = [
   {
@@ -93,7 +93,7 @@ export const ntheoryOptions: ToolOption[] = [
   },
   {
     title: "prime finder",
-    info: "finds the smallest prime bigger than n - very slow for big numbers!",
+    info: "finds all primes in this range - very slow for big numbers!",
     date: "20240111",
     tool: PrimeFinder,
     shortName: "pfn",
@@ -101,6 +101,10 @@ export const ntheoryOptions: ToolOption[] = [
       {
         type: "number",
         tooltip: "Bottom threshold",
+      },
+      {
+        type: "number",
+        tooltip: "Top threshold",
       },
     ],
   },
