@@ -33,7 +33,16 @@ export default function Navbar() {
       <ul className="m-2 grid grid-cols-5 gap-2 sm:grid-cols-1 sm:gap-3">
         <li className="mt-1 hidden rounded-full sm:block">
           <Link href="/">
-            <div className="rounded uppercase italic text-primary transition-colors hover:bg-primary hover:text-dark active:bg-light">
+            <div
+              className={clsx(
+                "rounded uppercase italic transition-colors",
+                { "bg-primary text-dark": pathname === "/" },
+                {
+                  "text-primary hover:bg-primary hover:text-dark active:bg-light":
+                    pathname !== "/",
+                },
+              )}
+            >
               <p className="whitespace-nowrap text-center text-lg sm:text-xl">
                 numerus
               </p>
@@ -45,8 +54,13 @@ export default function Navbar() {
           <Link href="/">
             <div
               className={clsx(
-                "mx-2 my-0.5 rounded-full border border-primary bg-primary py-2 text-dark transition-colors active:bg-light",
-                { "border border-light bg-light text-dark": pathname == "/" },
+                "mx-2 my-0.5 rounded-full border py-2 text-dark transition-colors active:bg-primary active:text-dark",
+                {
+                  "border-primary bg-primary": pathname === "/",
+                },
+                {
+                  "border border-primary text-primary": pathname !== "/",
+                },
               )}
             >
               <TbHome className="mx-auto text-xl" />

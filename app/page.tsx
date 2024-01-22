@@ -1,10 +1,10 @@
 "use client";
 
 import clsx from "clsx";
-import { max, min } from "moment";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { TbArrowsShuffle, TbArrowRight } from "react-icons/tb";
+import HomeNumber from "@/app/ui/HomeNumber";
 
 export default function Home() {
   const searchParams = useSearchParams();
@@ -17,6 +17,15 @@ export default function Home() {
   const [minNumber, setMinNumber] = useState<BigInt>();
   const [maxNumber, setMaxNumber] = useState<BigInt>();
   const [number, setNumber] = useState<BigInt>();
+
+  useEffect(() => {
+    if (searchParams.get("min"))
+      setMinNumber(BigInt(searchParams.get("min") as string));
+    if (searchParams.get("max"))
+      setMaxNumber(BigInt(searchParams.get("max") as string));
+    if (searchParams.get("num"))
+      setNumber(BigInt(searchParams.get("num") as string));
+  }, []);
 
   const setInput = (value: string) => {
     setHasChanged(true);
@@ -63,7 +72,7 @@ export default function Home() {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!hasChanged || !number) return;
+    if (!hasChanged || number === null || number === undefined) return;
 
     setHasChanged(false);
     setIsSubmitting(true);
@@ -86,6 +95,7 @@ export default function Home() {
           (want specific tools? check the math fields)
         </p>
       </section>
+      <HomeNumber search={searchParams} />
       <section className="relative">
         <form
           className="fixed bottom-[5.5rem] left-2 right-2 grid grid-cols-5 gap-2 text-lg sm:bottom-4 sm:left-32 sm:right-4 sm:gap-3 lg:grid-cols-7"
