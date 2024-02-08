@@ -1,4 +1,3 @@
-import { ReadonlyURLSearchParams } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 
 export type Quote = {
@@ -6,16 +5,7 @@ export type Quote = {
   author: string;
 };
 
-export type ToolOption = {
-  title: string;
-  info: string;
-  date: string;
-  tool: ToolNode;
-  shortName: string;
-  inputTypes: Array<FormNumberInput | FormDropdownInput>;
-};
-
-export type ToolNode = (values: BigInt[]) => React.ReactNode;
+export type HomeToolNode = (values: bigint) => React.ReactNode;
 
 export type FormNumberInput = {
   type: "number";

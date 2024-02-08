@@ -1,6 +1,4 @@
-import { Quote, ToolOption } from "@/app/lib/types";
-import PrimeFactorization from "@/app/lib/tools/PrimeFactorization";
-import PrimeFinder from "@/app/lib/tools/PrimeFinder";
+import { Quote } from "@/app/lib/types";
 
 export const mathQuotes: Quote[] = [
   {
@@ -74,38 +72,5 @@ export const mathQuotes: Quote[] = [
     quote:
       "To those who do not know mathematics, it is difficult to get across a real feeling as to the beauty, the deepest beauty, of nature.",
     author: "Richard Feynman",
-  },
-];
-
-export const ntheoryOptions: ToolOption[] = [
-  {
-    title: "prime factorization",
-    info: "integers only",
-    date: "20240111",
-    tool: PrimeFactorization,
-    shortName: "pf",
-    inputTypes: [
-      {
-        type: "number",
-        tooltip: "Number to factorize",
-      },
-    ],
-  },
-  {
-    title: "prime finder",
-    info: "finds all primes in this range - very slow for big numbers!",
-    date: "20240111",
-    tool: PrimeFinder,
-    shortName: "pfn",
-    inputTypes: [
-      {
-        type: "number",
-        tooltip: "Bottom threshold",
-      },
-      {
-        type: "number",
-        tooltip: "Top threshold",
-      },
-    ],
   },
 ];

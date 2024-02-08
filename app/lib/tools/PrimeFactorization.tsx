@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
-import { ToolNode } from "@/app/lib/types";
+import { HomeToolNode } from "@/app/lib/types";
 
 declare global {
   interface Window {
@@ -9,12 +9,12 @@ declare global {
   }
 }
 
-const PrimeFactorization: ToolNode = (values) => {
-  if (values === undefined) {
+const PrimeFactorization: HomeToolNode = (value) => {
+  if (value === undefined) {
     return (
-      <div className="rounded-full border border-mid">
+      <>
         <p>something went wrong!</p>
-      </div>
+      </>
     );
   }
 
@@ -30,8 +30,16 @@ const PrimeFactorization: ToolNode = (values) => {
     });
   }, []);
 
+  const amountOfDivisors = () => {
+    let divisors = 1;
+    Object.keys(factors).forEach((factor) => {
+      divisors *= factors[factor] + 1;
+    });
+    return divisors;
+  };
+
   useEffect(() => {
-    const worker = new Worker("./primeFactorizationWorker.js");
+    const worker = new Worker("./workers/primeFactorization.js");
 
     worker.onmessage = (event) => {
       if (event.data === -1) {
@@ -42,13 +50,13 @@ const PrimeFactorization: ToolNode = (values) => {
     };
 
     setFactors({});
-    worker.postMessage(values[0]);
+    worker.postMessage(value);
     setIsCalculating(true);
 
     return () => {
       worker.terminate();
     };
-  }, [values, addNewFactor]);
+  }, [value, addNewFactor]);
 
   useEffect(() => {
     if (window.MathJax) {
@@ -57,9 +65,9 @@ const PrimeFactorization: ToolNode = (values) => {
   }, [factors]);
 
   return (
-    <div className="rounded-full border border-mid">
+    <>
       {isCalculating && (
-        <p className="my-4 text-center italic text-lighty">
+        <p className="text-center italic text-lighty">
           {Object.entries(factors)
             .map((factor) => factor[0] + "^" + factor[1] + "")
             .join(" * ")}
@@ -78,7 +86,7 @@ const PrimeFactorization: ToolNode = (values) => {
               .join("\\cdot")}
             $$
           </p>
-          <p className="my-4 text-center text-sm">
+          <p className="text-center text-sm">
             $${"\\text{"}
             {factors[0] || factors[1]
               ? "no"
@@ -87,9 +95,12 @@ const PrimeFactorization: ToolNode = (values) => {
             {Object.entries(factors).length != 1 ? "s" : ""}
             {"}"}$$
           </p>
+          <p className="text-center text-sm">{`$$\\text{${amountOfDivisors()} divisor${
+            amountOfDivisors() != 1 ? "s" : "s"
+          }}$$`}</p>
         </>
       )}
-    </div>
+    </>
   );
 };
 

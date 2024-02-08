@@ -1,3 +1,5 @@
+import { HomeToolNode } from "@/app/lib/types";
+
 const firstTwenty = [
   "",
   "one",
@@ -59,18 +61,27 @@ const bases = [
   "vigintillion",
 ];
 
-export default function bigIntToWords(num: bigint) {
-  if (num === BigInt(0)) return "zero";
+const NumberToText: HomeToolNode = (value) => {
+  if (value === undefined) {
+    return (
+      <>
+        <p>something went wrong!</p>
+      </>
+    );
+  }
 
-  let result = num < BigInt(0) ? "minus " : "";
-  if (num < BigInt(0)) num = -num;
+  if (value === BigInt(0)) return <p>zero</p>;
+
+  let temp = value;
+  let result = temp < BigInt(0) ? "minus " : "";
+  if (temp < BigInt(0)) temp = -temp;
 
   for (let i = bases.length - 1; i >= 0; i--) {
     const base = BigInt(1000) ** BigInt(i);
-    let baseNum = num / base;
+    let baseNum = temp / base;
 
     if (baseNum > BigInt(0)) {
-      num %= base;
+      temp %= base;
       let baseResult = "";
 
       const hundreds = Number(baseNum / BigInt(100));
@@ -91,5 +102,16 @@ export default function bigIntToWords(num: bigint) {
     }
   }
 
-  return result.trim().substring(0, result.length - 2);
-}
+  return (
+    <>
+      <p className="my-3 break-words text-center text-2xl text-primary sm:text-3xl md:text-4xl">
+        {value.toLocaleString()}
+      </p>
+      <p className="my-1 text-center text-sm">
+        {result.trim().substring(0, result.length - 2)}
+      </p>
+    </>
+  );
+};
+
+export default NumberToText;
