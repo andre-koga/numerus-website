@@ -83,7 +83,7 @@ export default function Home() {
   };
 
   return (
-    <main className="m-3 mb-28 sm:m-4">
+    <main className="m-3 mb-28 sm:m-4 sm:mb-28">
       <section>
         <h1 className="text-center text-xl italic">
           All things math-related can be found here!

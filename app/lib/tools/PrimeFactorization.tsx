@@ -10,14 +10,6 @@ declare global {
 }
 
 const PrimeFactorization: HomeToolNode = (value) => {
-  if (value === undefined) {
-    return (
-      <>
-        <p>something went wrong!</p>
-      </>
-    );
-  }
-
   const [isCalculating, setIsCalculating] = useState(false);
   const [factors, setFactors] = useState<{ [key: string]: number }>({});
 
@@ -63,6 +55,14 @@ const PrimeFactorization: HomeToolNode = (value) => {
       window.MathJax.typesetPromise();
     }
   }, [factors]);
+
+  if (value === undefined) {
+    return (
+      <>
+        <p>something went wrong!</p>
+      </>
+    );
+  }
 
   return (
     <>

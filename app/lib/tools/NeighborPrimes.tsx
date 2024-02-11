@@ -10,14 +10,6 @@ declare global {
 }
 
 const NeighborPrimes: HomeToolNode = (value) => {
-  if (value === undefined) {
-    return (
-      <>
-        <p>something went wrong!</p>
-      </>
-    );
-  }
-
   const [isCalculating, setIsCalculating] = useState(false);
   const [primes, setPrimes] = useState<[BigInt, BigInt]>([
     BigInt(0),
@@ -53,6 +45,14 @@ const NeighborPrimes: HomeToolNode = (value) => {
       window.MathJax.typesetPromise();
     }
   }, [primes]);
+
+  if (value === undefined) {
+    return (
+      <>
+        <p>something went wrong!</p>
+      </>
+    );
+  }
 
   return (
     <>

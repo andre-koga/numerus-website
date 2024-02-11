@@ -7,6 +7,8 @@ import NeighborPrimes from "@/app/lib/tools/NeighborPrimes";
 import Conversions from "@/app/lib/tools/Conversions";
 import RomanNumeral from "@/app/lib/tools/RomanNumeral";
 import SequenceChecker from "@/app/lib/tools/SequenceChecker";
+import Collatz from "@/app/lib/tools/Collatz";
+import DigitalRoot from "@/app/lib/tools/DigitalRoot";
 
 const functions: {
   name: string;
@@ -42,6 +44,16 @@ const functions: {
     name: "Sequence Checker",
     info: "Check if a number is part of a sequence.",
     tool: SequenceChecker,
+  },
+  {
+    name: "Collatz Sequence",
+    info: "Also known as the 3n + 1 problem.",
+    tool: Collatz,
+  },
+  {
+    name: "Digital Root",
+    info: "The digital root of a number is the sum of its digits.",
+    tool: DigitalRoot,
   },
 ];
 
