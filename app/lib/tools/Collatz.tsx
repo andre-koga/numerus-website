@@ -2,14 +2,6 @@ import { useEffect, useState } from "react";
 import { HomeToolNode } from "@/app/lib/types";
 
 const Collatz: HomeToolNode = (value) => {
-  if (value === undefined) {
-    return (
-      <>
-        <p>something went wrong!</p>
-      </>
-    );
-  }
-
   const [seq, setSeq] = useState<bigint[]>([]);
 
   const collatz = (n: bigint, limit: boolean) => {
@@ -28,6 +20,14 @@ const Collatz: HomeToolNode = (value) => {
   useEffect(() => {
     collatz(value, true);
   }, [, value]);
+
+  if (value === undefined) {
+    return (
+      <>
+        <p>something went wrong!</p>
+      </>
+    );
+  }
 
   return (
     <>
