@@ -11,7 +11,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="m-3 sm:m-4">
+    <header className="m-2 sm:m-4">
       <p className="my-3 text-center text-xs italic text-mid">
         any other quotes / tools that you want to see here?{" "}
         <a
@@ -22,11 +22,11 @@ export default function Header() {
           send me a message!
         </a>
       </p>
-      <div className="mb-4 rounded bg-darky p-3 text-center">
+      <div className="mb-2 rounded bg-darky p-4 text-center sm:mb-4">
         <p className="my-1 text-sm italic text-lighty md:text-base">
           &quot;{mathQuotes[quoteID].quote}&quot;
         </p>
-        <p className="my-1 text-xs italic text-lighty md:text-sm">
+        <p className="my-2 text-xs italic text-lighty md:text-sm">
           {mathQuotes[quoteID].author}
         </p>
       </div>

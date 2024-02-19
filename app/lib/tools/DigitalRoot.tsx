@@ -15,8 +15,8 @@ const DigitalRoot: HomeToolNode = (value) => {
 
   return (
     <>
-      <p className="mx-2 text-justify text-sm">
-        $${digitalRoot(value).toString()}$$
+      <p className="mx-2 text-justify text-lg">
+        $$dr = {digitalRoot(value).toString()}$$
       </p>
     </>
   );

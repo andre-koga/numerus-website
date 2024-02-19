@@ -9,6 +9,7 @@ import RomanNumeral from "@/app/lib/tools/RomanNumeral";
 import SequenceChecker from "@/app/lib/tools/SequenceChecker";
 import Collatz from "@/app/lib/tools/Collatz";
 import DigitalRoot from "@/app/lib/tools/DigitalRoot";
+import BallStacking from "@/app/lib/tools/BallStacking";
 
 const functions: {
   name: string;
@@ -54,6 +55,11 @@ const functions: {
     name: "Digital Root",
     info: "The digital root of a number is the sum of its digits.",
     tool: DigitalRoot,
+  },
+  {
+    name: "Ball Stacking",
+    info: "Stacking balls in different ways.",
+    tool: BallStacking,
   },
 ];
 

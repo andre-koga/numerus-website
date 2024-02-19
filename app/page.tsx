@@ -83,18 +83,20 @@ export default function Home() {
   };
 
   return (
-    <main className="m-3 mb-28 sm:m-4 sm:mb-28">
-      <section>
-        <h1 className="text-center text-xl italic">
-          All things math-related can be found here!
-        </h1>
-        <h2 className="text-center text-sm lowercase text-lighty">
-          No ads, no payments, no shady links. Just pure, beautiful math
-        </h2>
-        <p className="my-2 text-center uppercase text-mid">
-          (want specific tools? check the math fields)
-        </p>
-      </section>
+    <main className="m-2 sm:m-4">
+      {!searchParams.get("num") && (
+        <section>
+          <h1 className="text-center text-xl italic">
+            All things math-related can be found here!
+          </h1>
+          <h2 className="text-center text-sm lowercase text-lighty">
+            No ads, no payments, no shady links. Just pure, beautiful math
+          </h2>
+          <p className="my-2 text-center uppercase text-mid">
+            (want specific tools? check the math fields)
+          </p>
+        </section>
+      )}
       <HomeNumber search={searchParams} />
       <section className="relative">
         <form

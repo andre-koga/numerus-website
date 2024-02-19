@@ -9,6 +9,16 @@ const RomanNumeral: HomeToolNode = (value) => {
     );
   }
 
+  if (value === 0n) {
+    return (
+      <>
+        <p className="my-1 text-center text-sm italic text-lighty">
+          you've bested the romans!
+        </p>
+      </>
+    );
+  }
+
   const romanize = (val: bigint, size: number = 0): string => {
     if (val <= 3999) {
       const lookup: { [key: string]: bigint } = {

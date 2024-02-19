@@ -1,24 +1,5 @@
 import { HomeToolNode } from "../types";
-
-const sqrt = (value: bigint) => {
-  if (value < 0n) {
-    throw "square root of negative numbers is not supported";
-  }
-
-  if (value < 2n) {
-    return value;
-  }
-
-  function newtonIteration(n: bigint, x0: bigint) {
-    const x1 = (n / x0 + x0) >> 1n;
-    if (x0 === x1 || x0 === x1 - 1n) {
-      return x0;
-    }
-    return newtonIteration(n, x1);
-  }
-
-  return newtonIteration(value, 1n);
-};
+import sqrt from "./sqrt";
 
 const isPerfectSquare = (num: bigint) => {
   const root = sqrt(num);
@@ -27,7 +8,9 @@ const isPerfectSquare = (num: bigint) => {
 
 const fibonacci = (num: bigint) => {
   return (
-    isPerfectSquare(5n * num * num + 4n) || isPerfectSquare(5n * num * num - 4n)
+    num === 0n ||
+    isPerfectSquare(5n * num * num + 4n) ||
+    isPerfectSquare(5n * num * num - 4n)
   );
 };
 
@@ -48,12 +31,42 @@ const SequenceChecker: HomeToolNode = (value) => {
     return sequences.join(", ");
   };
 
+  if (checkSequences(value) === "") {
+    return (
+      <>
+        <p className="my-2 text-center text-sm italic text-lighty">
+          this is a boring number!
+        </p>
+        <p className="my-2 text-center text-sm italic text-lighty">
+          ...or is it? check{" "}
+          <a
+            target="_blank"
+            className="underline underline-offset-2"
+            href={`https://oeis.org/search?q=${value.toString()}&language=english&go=Search`}
+          >
+            OEIS
+          </a>
+        </p>
+      </>
+    );
+  }
+
   return (
     <>
       <p className="my-2 text-sm">Sequences that contain this number:</p>
       <ul>
         <li>{`$$\\text{${checkSequences(value)}}$$`}</li>
       </ul>
+      <p className="my-2 text-center text-sm italic text-lighty">
+        still want more? check{" "}
+        <a
+          target="_blank"
+          className="underline underline-offset-2"
+          href={`https://oeis.org/search?q=${value.toString()}&language=english&go=Search`}
+        >
+          OEIS
+        </a>
+      </p>
     </>
   );
 };

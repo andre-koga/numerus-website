@@ -70,7 +70,15 @@ const NumberToText: HomeToolNode = (value) => {
     );
   }
 
-  if (value === BigInt(0)) return <p>zero</p>;
+  if (value === BigInt(0))
+    return (
+      <>
+        <p className="my-3 break-words text-center text-2xl text-primary sm:text-3xl md:text-4xl">
+          0
+        </p>
+        <p className="my-1 text-center text-sm">zero</p>
+      </>
+    );
 
   let temp = value;
   let result = temp < BigInt(0) ? "minus " : "";

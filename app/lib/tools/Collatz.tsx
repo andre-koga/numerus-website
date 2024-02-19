@@ -29,6 +29,16 @@ const Collatz: HomeToolNode = (value) => {
     );
   }
 
+  if (value === 0n) {
+    return (
+      <>
+        <p className="my-1 text-center text-sm italic text-lighty">
+          0, 0, 0, 0, 0... just kidding!
+        </p>
+      </>
+    );
+  }
+
   return (
     <>
       <p className="m-2 text-justify text-sm">

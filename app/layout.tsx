@@ -18,10 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${space.className} relative bg-dark text-light`}>
-        <div className="fixed bottom-0 h-20 w-full overflow-hidden bg-darky sm:left-0 sm:h-full sm:w-28">
+        <div className="fixed bottom-0 z-50 h-20 w-full overflow-hidden bg-darky sm:left-0 sm:h-full sm:w-28">
           <Navbar />
         </div>
-        <div className="mb-20 sm:mb-0 sm:ml-28">
+        <div className="mb-44 sm:mb-28 sm:ml-28">
           <Header />
           {children}
           <Footer />
